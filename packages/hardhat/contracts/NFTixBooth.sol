@@ -45,7 +45,7 @@ contract NFTixBooth is ERC721URIStorage, Ownable {
 
     string memory tokenURI = string(abi.encodePacked("data:application/json;base64,", json));
 
-    _setTokenURI(currentId.current(), tokenURI);
+    _setTokenURI(tokenId, tokenURI);
   }
 
   // payable means this mint function can receive ether
@@ -88,7 +88,7 @@ contract NFTixBooth is ERC721URIStorage, Ownable {
             '{ "name": "NFTix #',
             Strings.toString(currentId.current()),
             '", "description": "A NFT-powered ticketing system", ',
-            '"traits": [{ "trait_type": "Checked In", "value": "true" }, { "trait_type": "Purchased", "value": "true" }], ',
+            '"traits": [{ "trait_type": "Checked In", "value": "false" }, { "trait_type": "Purchased", "value": "true" }], ',
             '"image": "ipfs://Qmb5QKv979PZsYuXLWiEVqXPJakFXCmEEzpzqnCRfSqvLC" }'
           )
         )
@@ -102,6 +102,7 @@ contract NFTixBooth is ERC721URIStorage, Ownable {
     _safeMint(msg.sender, currentId.current());
     _setTokenURI(currentId.current(), tokenURI);
 
+    holderTokenIDs[msg.sender].push(currentId.current());
     currentId.increment();
     availableTickets = availableTickets - 1;
   }
