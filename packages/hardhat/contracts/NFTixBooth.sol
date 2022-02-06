@@ -37,14 +37,13 @@ contract NFTixBooth is ERC721URIStorage, Ownable {
             Strings.toString(tokenId),
             '", "description": "A NFT-powered ticketing system", ',
             '"traits": [{ "trait_type": "Checked In", "value": "true" }, { "trait_type": "Purchased", "value": "true" }], ',
-            '"image": "ipfs://QmXdPEQEgqtPCPCAQJ4nYKg1PWqt41c8GMbPx8AxW47LCS" }'
+            '"image": "ipfs://Qmd8FCbr5eiFcrSzj3PRovG61tVeus3HJzT3B46XXaJmWj" }'
           )
         )
       )
     );
 
     string memory tokenURI = string(abi.encodePacked("data:application/json;base64,", json));
-
     _setTokenURI(tokenId, tokenURI);
   }
 
